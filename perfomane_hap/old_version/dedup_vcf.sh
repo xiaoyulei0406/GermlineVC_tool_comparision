@@ -1,0 +1,1 @@
+( grep  '^#' HG002.vcf ; grep -v "^#" HG002.vcf | LC_ALL=C sort -t $'\t' -k1,1 -k2,2n -k4,4 | awk -F '\t' 'BEGIN{ prev="";} {key=sprintf("%s\t%s\t%s",$1,$2,$4);if(key==prev) next;print;prev=key;}' )  > HG002.dedup.vcf
